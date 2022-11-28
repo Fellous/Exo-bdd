@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="0" y="255" name="lecteur/adherents">
+</datatypes><table x="148" y="59" name="lecteur/adherents">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -56,23 +56,26 @@
 <row name="date_desinscription" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="452" y="223" name="livre">
-<row name="id" null="1" autoincrement="1">
+<row name="id_user" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="id_documents_volumes" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="volumes" row="id_documents" />
+<default>NULL</default><relation table="user" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="211" y="261" name="emprunter">
+<table x="723" y="340" name="livre">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_documents_volumes" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="374" y="223" name="emprunter">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -84,11 +87,27 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="livre" row="id" />
 </row>
+<row name="date_emprunt" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="date_restitution" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="nombre_de_prolongation" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_gestionaire" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="gestionaire" row="id" />
+</row>
+<row name="date_prolongation" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="408" y="127" name="ecris">
+<table x="704" y="109" name="ecris">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -104,7 +123,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="401" y="45" name="auteur">
+<table x="918" y="27" name="auteur">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -112,15 +131,18 @@
 <part>id</part>
 </key>
 </table>
-<table x="388" y="497" name="categorie">
+<table x="713" y="671" name="categorie">
 <row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="nom_cat" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="392" y="366" name="apartient">
+<table x="727" y="495" name="apartient">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -136,15 +158,19 @@
 <part>id</part>
 </key>
 </table>
-<table x="66" y="102" name="gestionaire">
+<table x="145" y="424" name="gestionaire">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="id_user" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="705" y="275" name="documents">
+<table x="1077" y="178" name="documents">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -154,48 +180,42 @@
 <row name="date_achat" null="1" autoincrement="0">
 <datatype>DATETIME</datatype>
 <default>NULL</default></row>
+<row name="id_Type_doc" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Type_doc" row="id" />
+</row>
+<row name="id_auteur" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="auteur" row="id" />
+</row>
+<row name="destinataire" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="date_parution" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="929" y="248" name="journaux">
-<row name="id_documents" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="documents" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id_documents</part>
-</key>
-</table>
-<table x="715" y="197" name="volumes">
-<row name="id_documents" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="documents" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id_documents</part>
-</key>
-</table>
-<table x="607" y="46.79998779296875" name="dictionaire">
+<table x="1357" y="206" name="Type_doc">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_documents_volumes" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="volumes" row="id_documents" />
-</row>
+<row name="nom_type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="sous_type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="874" y="49" name="BD">
+<table x="13" y="273" name="user">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_documents_volumes" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="volumes" row="id_documents" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
