@@ -17,3 +17,8 @@ photo exo 2:
 
 photo exo 3:
 ![exo3](https://user-images.githubusercontent.com/77622474/217608935-9725228b-1f2c-4d2e-bf90-f8ca0d157250.png)
+
+photo exo 4:
+
+
+![exo4](https://user-images.githubusercontent.com/77622474/217615143-4ad0bddf-2502-4810-abc8-ed9272013429.png)
